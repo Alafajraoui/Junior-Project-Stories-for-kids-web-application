@@ -1,8 +1,8 @@
 import React from "react";
 
-const OneBook = ({ book, setView }) => {
+const OneBook = ({ book, changeView }) => {
   const handleUpdateClick = () => {
-    setView("UpdateBook");
+    changeView("UpdateBook");
   };
 
   return (

@@ -3,7 +3,7 @@ import AllBooks from "./AllBooks.jsx";
 import axios from "axios";
 import OneBook from "./OneBook.jsx";
 import CreateBook from "./CreateBook.jsx";
-import UpdateBook from "./UpdateBook.jsx"; 
+import UpdateBook from "./UpdateBook.jsx";
 
 const Main = () => {
   const [books, setBooks] = useState([]);
@@ -12,6 +12,7 @@ const Main = () => {
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [book, setBook] = useState(null);
   const [view, setView] = useState("AllBooks");
+  const [category, setCategory] = useState("");
 
   const changeView = (view) => {
     setView(view);
@@ -21,7 +22,6 @@ const Main = () => {
     axios
       .get("http://127.0.0.1:3000/api/books")
       .then((response) => {
-        console.log(response.data);
         setBooks(response.data);
         setFilteredBooks(response.data);
       })
@@ -41,7 +41,6 @@ const Main = () => {
     axios
       .post("http://127.0.0.1:3000/api/books/", body)
       .then((response) => {
-        console.log(response.data);
         setView("AllBooks");
         setRefetch(!refetch);
       })
@@ -54,7 +53,6 @@ const Main = () => {
     axios
       .delete(`http://127.0.0.1:3000/api/books/${id}`)
       .then((response) => {
-        console.log(response.data);
         setRefetch(!refetch);
       })
       .catch((error) => {
@@ -66,7 +64,6 @@ const Main = () => {
     axios
       .put(`http://127.0.0.1:3000/api/books/${id}`, body)
       .then((response) => {
-        console.log(response.data);
         setRefetch(!refetch);
         changeView("AllBooks");
       })
@@ -88,6 +85,20 @@ const Main = () => {
     searchBook(search);
   };
 
+  const handleCategoryChange = (e) => {
+    const selectedCategory = e.target.value;
+    setCategory(selectedCategory);
+    filterByCategory(selectedCategory);
+  };
+
+  const filterByCategory = (category) => {
+      const filtered = books.filter((book) =>
+        book.categorie.toLowerCase().includes(category.toLowerCase())
+      );
+      setFilteredBooks(filtered);
+    
+  };
+
   useEffect(() => {
     fetchData();
   }, [refetch]);
@@ -102,7 +113,7 @@ const Main = () => {
         />
       );
     } else if (view === "OneBook") {
-      return <OneBook book={book} setView={setView} />;
+      return <OneBook book={book} changeView={changeView}  />;
     } else if (view === "CreateBook") {
       return <CreateBook add={createBook} />;
     } else if (view === "UpdateBook") {
@@ -125,11 +136,10 @@ const Main = () => {
       </div>
       <div className="categorie">
         <label className="text-categorie">Choose a categorie </label>
-        <select className="input-categorie">
+        <select className="input-categorie" value={category} onChange={handleCategoryChange}>
+          <option value="">All Categories</option>
           <option value="for kids under 10">Stories for kids under 10</option>
-          <option value="for kids between 10 and 18">
-            Stories for Kids between 10 and 18
-          </option>
+          <option value="for kids between 10 and 18">  Stories for Kids between 10 and 18 </option>
           <option value="for kids +18">Stories for Kids older than 18</option>
         </select>
       </div>
