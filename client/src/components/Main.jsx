@@ -85,18 +85,16 @@ const Main = () => {
     searchBook(search);
   };
 
+  const filterByCategory = (category) => {
+    const filtered = books.filter((book) =>
+      book.categorie.toLowerCase().includes(category.toLowerCase())
+    );
+    setFilteredBooks(filtered);
+  };
   const handleCategoryChange = (e) => {
     const selectedCategory = e.target.value;
     setCategory(selectedCategory);
     filterByCategory(selectedCategory);
-  };
-
-  const filterByCategory = (category) => {
-      const filtered = books.filter((book) =>
-        book.categorie.toLowerCase().includes(category.toLowerCase())
-      );
-      setFilteredBooks(filtered);
-    
   };
 
   useEffect(() => {
@@ -113,7 +111,7 @@ const Main = () => {
         />
       );
     } else if (view === "OneBook") {
-      return <OneBook book={book} changeView={changeView}  />;
+      return <OneBook book={book} changeView={changeView} />;
     } else if (view === "CreateBook") {
       return <CreateBook add={createBook} />;
     } else if (view === "UpdateBook") {
@@ -136,10 +134,17 @@ const Main = () => {
       </div>
       <div className="categorie">
         <label className="text-categorie">Choose a categorie </label>
-        <select className="input-categorie" value={category} onChange={handleCategoryChange}>
+        <select
+          className="input-categorie"
+          value={category}
+          onChange={handleCategoryChange}
+        >
           <option value="">All Categories</option>
           <option value="for kids under 10">Stories for kids under 10</option>
-          <option value="for kids between 10 and 18">  Stories for Kids between 10 and 18 </option>
+          <option value="for kids between 10 and 18">
+            {" "}
+            Stories for Kids between 10 and 18{" "}
+          </option>
           <option value="for kids +18">Stories for Kids older than 18</option>
         </select>
       </div>
