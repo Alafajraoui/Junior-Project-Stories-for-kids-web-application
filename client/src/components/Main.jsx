@@ -3,6 +3,7 @@ import AllBooks from "./AllBooks.jsx";
 import axios from "axios";
 import OneBook from "./OneBook.jsx";
 import CreateBook from "./CreateBook.jsx";
+import UpdateBook from "./UpdateBook.jsx"; 
 
 const Main = () => {
   const [books, setBooks] = useState([]);
@@ -74,8 +75,6 @@ const Main = () => {
       });
   };
 
-
-
   const selectBook = (book) => {
     setBook(book);
     setView("OneBook");
@@ -103,7 +102,7 @@ const Main = () => {
         />
       );
     } else if (view === "OneBook") {
-      return <OneBook book={book} />;
+      return <OneBook book={book} setView={setView} />;
     } else if (view === "CreateBook") {
       return <CreateBook add={createBook} />;
     } else if (view === "UpdateBook") {

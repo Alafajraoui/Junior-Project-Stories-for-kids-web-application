@@ -235,14 +235,15 @@ body {
 
 .create-container {
   margin-top: 10px;
-  margin-left: 100px;
+  margin-left: 200px;
+  width: 700px;
   text-align: center;
   font-size: large;
 }
 
 .create-box {
   margin-left: 50px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .create-title {
