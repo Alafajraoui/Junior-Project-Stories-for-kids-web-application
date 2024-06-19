@@ -9,10 +9,10 @@ const OneBook = ({ book }) => {
       <h2> {book.description}</h2>
       <br></br>
       <h3>categorie: {book.categorie}</h3>
-      <button className="Read-bnt" >
+       <a href={book.PageUrl}><button className="Read-bnt" >
         Start Reading
-      </button>
-      <button className="update-btn"> Update </button>
+      </button></a>
+      <button className="update-btn" > Update </button>
     </div>
   );
 };

@@ -8,6 +8,7 @@ const Main = () => {
   const [books, setBooks] = useState([]);
   const [refetch, setRefetch] = useState(false);
   const [search, setSearch] = useState("");
+  const [filteredBooks, setFilteredBooks] = useState([]);
   const [book, setBook] = useState(null);
   const [view, setView] = useState("AllBooks");
 
@@ -21,22 +22,18 @@ const Main = () => {
       .then((response) => {
         console.log(response.data);
         setBooks(response.data);
+        setFilteredBooks(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-  const searchBook = () => {
-    axios
-      .get(`http://127.0.0.1:3000/api/books/${search}`)
-      .then((response) => {
-        console.log(response);
-        setBooks(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const searchBook = (name) => {
+    const searched = books.filter((element) =>
+      element.Name.toLowerCase().includes(name.toLowerCase())
+    );
+    setFilteredBooks(searched);
   };
 
   const createBook = (body) => {
@@ -64,16 +61,20 @@ const Main = () => {
       });
   };
 
-  const UpdateBook=(id,body)=>{
-    axios.put(`http://127.0.0.1:3000/api/books/${id}`,body).then((response)=>{
-      console.log(response.data);
-      setRefetch(!refetch);
-      changeView("AllBooks")
+  const updateBook = (id, body) => {
+    axios
+      .put(`http://127.0.0.1:3000/api/books/${id}`, body)
+      .then((response) => {
+        console.log(response.data);
+        setRefetch(!refetch);
+        changeView("AllBooks");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-    }).catch((error)=>{
-      console.log(error)
-    })
-  }
+
 
   const selectBook = (book) => {
     setBook(book);
@@ -85,7 +86,7 @@ const Main = () => {
   };
 
   const handleSearchClick = () => {
-    searchBook();
+    searchBook(search);
   };
 
   useEffect(() => {
@@ -96,7 +97,7 @@ const Main = () => {
     if (view === "AllBooks") {
       return (
         <AllBooks
-          allBooks={books}
+          allBooks={filteredBooks}
           DeleteBook={deleteBook}
           selectBook={selectBook}
         />
@@ -105,12 +106,11 @@ const Main = () => {
       return <OneBook book={book} />;
     } else if (view === "CreateBook") {
       return <CreateBook add={createBook} />;
-    } else if (view === "updateBook") {
-      return <UpdateBook book={book} update={UpdateBook} />;
+    } else if (view === "UpdateBook") {
+      return <UpdateBook book={book} update={updateBook} />;
     }
   };
 
-  
   return (
     <div>
       <div className="nav">
@@ -129,7 +129,7 @@ const Main = () => {
         <select className="input-categorie">
           <option value="for kids under 10">Stories for kids under 10</option>
           <option value="for kids between 10 and 18">
-            Strories for Kids between 10 and 18
+            Stories for Kids between 10 and 18
           </option>
           <option value="for kids +18">Stories for Kids older than 18</option>
         </select>

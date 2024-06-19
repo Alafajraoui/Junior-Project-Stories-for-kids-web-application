@@ -8,11 +8,7 @@ const App = () => {
  
 
   return (
-    <div>
-    <div>
       <Main/>
-    </div>
-    </div>
   )
 }
 

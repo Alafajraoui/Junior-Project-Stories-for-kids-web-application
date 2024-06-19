@@ -153,7 +153,7 @@ body {
   background-color: #af6f0f;
   font-size:small;
   border-radius: 10px;
-  color: aliceblue;
+  color: rgb(238, 229, 229);
 }
 
 .Read-bnt:hover {
@@ -193,8 +193,8 @@ body {
   cursor: pointer;
   background-color: #af6f0f;
   font-size: medium;
-  border-radius: 10px;
   color: aliceblue;
+  border-radius: 10px;
 }
 
 .update-btn:hover {
