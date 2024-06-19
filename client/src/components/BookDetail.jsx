@@ -13,11 +13,16 @@ const BookDetail = (props) => {
 
   return (
     <div className="item-container">
-      <img src={props.books.ImageUrl} alt={props.books.Name} onClick={selectBook} />
+      <img
+        src={props.books.ImageUrl}
+        alt={props.books.Name}
+        onClick={selectBook}
+      />
       <h3>{props.books.Name}</h3>
       <p>categorie: {props.books.categorie}</p>
-      <button className="delete-btn" onClick={deleteBook}>Delete</button>
-      <button className="update-btn"> Update </button>
+      <button className="delete-btn" onClick={deleteBook}>
+        Delete
+      </button>
     </div>
   );
 };

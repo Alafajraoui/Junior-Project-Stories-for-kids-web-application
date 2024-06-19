@@ -106,7 +106,6 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(210px, 0.5fr));
   grid-gap: 40px;
-  box-sizing: border-box;
 }
 
 .item-container {
@@ -147,12 +146,12 @@ body {
 }
 
 .Read-bnt {
-  margin-top: 10px;
+  margin-top: 20px;
   width: 100px;
-  padding: 3px 9px;
+  height: 37px;
   cursor: pointer;
   background-color: #af6f0f;
-  font-size: medium;
+  font-size:small;
   border-radius: 10px;
   color: aliceblue;
 }
@@ -188,8 +187,8 @@ body {
 
 .update-btn {
   margin-top: 10px;
-  margin-left: 10px;
-  width: 80px;
+  width: 100px;
+  margin-left: 50px;
   padding: 3px 9px;
   cursor: pointer;
   background-color: #af6f0f;
@@ -231,5 +230,54 @@ body {
   font-size: large;
   color: black;
   margin-left: 33px;
-  
+}
+
+
+.create-container {
+  margin-top: 10px;
+  margin-left: 100px;
+  text-align: center;
+  font-size: large;
+}
+
+.create-box {
+  margin-left: 50px;
+  margin-top: 30px;
+}
+
+.create-title {
+  font-size: x-large;
+  color: white;
+}
+
+.create-input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: medium;
+}
+
+
+
+.create-input:focus {
+  outline: none;
+  border-color: #af6f0f;
+}
+
+.create-btn {
+  border-radius: 10px;
+  margin-top: 20px;
+  width: 150px;
+  height: 40px;
+  padding: 3px 9px;
+  cursor: pointer;
+  background-color: #af6f0f;
+  color: #ffffff;
+  font-size: medium;
+}
+
+.create-btn:hover {
+  background-color: #7a4900;
 }

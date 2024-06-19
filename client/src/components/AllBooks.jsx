@@ -5,7 +5,12 @@ const AllBooks = (props) => {
   return (
     <div className="container">
       {props.allBooks.map((ele, i) => (
-        <BookDetail key={i} books={ele} OnDelete={props.DeleteBook} OneBook={props.selectBook} />
+        <BookDetail
+          key={i}
+          books={ele}
+          OnDelete={props.DeleteBook}
+          OneBook={props.selectBook}
+        />
       ))}
     </div>
   );

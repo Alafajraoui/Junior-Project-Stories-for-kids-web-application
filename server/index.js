@@ -61,9 +61,10 @@ app.put("/api/books/:id",async(req,res)=>{
     const id=req.params.id
     const {Name,description,ImageUrl,categorie,PageUrl}=req.body;
     const result=await db.UpdateOne(id,{Name,description,ImageUrl,categorie,PageUrl});
-    console.log(result);
+    console.log(result,"hello");
     res.status(201).send(result)
   } catch (error) {
+    console.log(error)
     res.status(500).send(error)
   }
 })

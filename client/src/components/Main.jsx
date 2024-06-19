@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AllBooks from "./AllBooks.jsx";
 import axios from "axios";
 import OneBook from "./OneBook.jsx";
+import CreateBook from "./CreateBook.jsx";
 
 const Main = () => {
   const [books, setBooks] = useState([]);
@@ -15,7 +16,8 @@ const Main = () => {
   };
 
   const fetchData = () => {
-    axios.get("http://127.0.0.1:3000/api/books")
+    axios
+      .get("http://127.0.0.1:3000/api/books")
       .then((response) => {
         console.log(response.data);
         setBooks(response.data);
@@ -26,7 +28,8 @@ const Main = () => {
   };
 
   const searchBook = () => {
-    axios.get(`http://127.0.0.1:3000/api/books/${search}`)
+    axios
+      .get(`http://127.0.0.1:3000/api/books/${search}`)
       .then((response) => {
         console.log(response);
         setBooks(response.data);
@@ -36,8 +39,22 @@ const Main = () => {
       });
   };
 
+  const createBook = (body) => {
+    axios
+      .post("http://127.0.0.1:3000/api/books/", body)
+      .then((response) => {
+        console.log(response.data);
+        setView("AllBooks");
+        setRefetch(!refetch);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const deleteBook = (id) => {
-    axios.delete(`http://127.0.0.1:3000/api/books/${id}`)
+    axios
+      .delete(`http://127.0.0.1:3000/api/books/${id}`)
       .then((response) => {
         console.log(response.data);
         setRefetch(!refetch);
@@ -46,6 +63,17 @@ const Main = () => {
         console.log(error);
       });
   };
+
+  const UpdateBook=(id,body)=>{
+    axios.put(`http://127.0.0.1:3000/api/books/${id}`,body).then((response)=>{
+      console.log(response.data);
+      setRefetch(!refetch);
+      changeView("AllBooks")
+
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
 
   const selectBook = (book) => {
     setBook(book);
@@ -64,26 +92,53 @@ const Main = () => {
     fetchData();
   }, [refetch]);
 
+  const renderView = () => {
+    if (view === "AllBooks") {
+      return (
+        <AllBooks
+          allBooks={books}
+          DeleteBook={deleteBook}
+          selectBook={selectBook}
+        />
+      );
+    } else if (view === "OneBook") {
+      return <OneBook book={book} />;
+    } else if (view === "CreateBook") {
+      return <CreateBook add={createBook} />;
+    } else if (view === "updateBook") {
+      return <UpdateBook book={book} update={UpdateBook} />;
+    }
+  };
+
+  
   return (
     <div>
-      <div className="nav" >
-      <h1> It's Story Time ...</h1>
-      <button className="All-btn"> All Stories </button>
+      <div className="nav">
+        <h1> It's Story Time ...</h1>
+        <button className="All-btn" onClick={() => changeView("AllBooks")}>
+          All Stories
+        </button>
       </div>
-        <div className='Add-Storie'>
-        <button className='Add-btn'>Add a Storie</button>
+      <div className="Add-Storie">
+        <button className="Add-btn" onClick={() => changeView("CreateBook")}>
+          Add a Storie
+        </button>
       </div>
       <div className="categorie">
-      <label className="text-categorie">Choose a categorie </label>
+        <label className="text-categorie">Choose a categorie </label>
         <select className="input-categorie">
           <option value="for kids under 10">Stories for kids under 10</option>
-          <option value="for kids between 10 and 18">Strories for Kids between 10 and 18</option>
+          <option value="for kids between 10 and 18">
+            Strories for Kids between 10 and 18
+          </option>
           <option value="for kids +18">Stories for Kids older than 18</option>
         </select>
       </div>
       <div className="header">
         <div className="partOne">
-          <h1>A room without a book is like <br /> a body without a soul</h1>
+          <h1>
+            A room without a book is like <br /> a body without a soul
+          </h1>
         </div>
         <div className="partTow">
           <h1>Find your Storie</h1>
@@ -95,19 +150,14 @@ const Main = () => {
               value={search}
               onChange={handleSearchTyping}
             />
-            <button className="search-btn" onClick={handleSearchClick}>Search</button>
+            <button className="search-btn" onClick={handleSearchClick}>
+              Search
+            </button>
           </div>
           <img src="https://images.unsplash.com/photo-1565843248736-8c41e6db117b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGtpZHMlMjBib29rfGVufDB8fDB8fHww" />
         </div>
       </div>
-      <div className="container-All">
-        {view === "AllBooks" && (
-          <AllBooks allBooks={books} DeleteBook={deleteBook} selectBook={selectBook} />
-        )}
-        {view === "OneBook" && (
-          <OneBook book={book} />
-        )}
-      </div>
+      {renderView()}
     </div>
   );
 };
