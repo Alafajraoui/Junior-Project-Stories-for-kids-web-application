@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css2?family=Playwrite+IS:wght@100..400&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Playwrite IS", cursive;
+}
+
+body {
+  background-color: rgb(226, 116, 72);
+}
+
+.header {
+  width: 100%;
+  height: 500px;
+  color: rgba(255, 255, 255, 0.685);
+  box-shadow: 0 5px 10px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.partTow {
+  margin-top: 0px;
+  margin-left: 240px;
+  text-align: center;
+}
+
+.partTow img {
+  margin-top: 30px;
+  margin-left:-40px;
+  width: 370px;
+  border-radius: 10px;
+}
+
+.partOne h1 {
+  text-align: center;
+  margin-left: 40px;
+}
+
+.header::before {
+  content: "";
+  position: absolute;
+  margin-top: 0;
+  margin-left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://ichef.bbci.co.uk/images/ic/1200x675/p0gl91h1.jpg");
+  clip-path: circle(70% at left 100px);
+  z-index: -1;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn {
+  background-color: #af6f0f;
+  color: #ffffff;
+  padding: 3px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.search-btn:hover {
+  background-color: #7a4900;
+}
+
+.input-text {
+  padding: 1px;
+  border: none;
+  border-radius: 5px;
+  width: 300px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.Add-Storie {
+  display: flex;
+  justify-content: end;
+  margin-right: 30px;
+}
+
+.Add-btn {
+  border-radius: 5px;
+  margin-top: -70px;
+  width: 150px;
+  height: 40px;
+  padding: 3px 9px;
+  cursor: pointer;
+  background-color: #af6f0f;
+  color: #ffffff;
+}
+
+.Add-btn:hover {
+  background-color: #7a4900;
+}
+
+.container {
+  width: 90%;
+  margin-top: 30px;
+  margin-left: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 0.5fr));
+  grid-gap: 40px;
+  box-sizing: border-box;
+}
+
+.item-container {
+  background-color: rgb(233, 156, 125);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 5px 5px #f1ede7;
+  transition: 0.5s;
+  text-align: center;
+  position: relative;
+}
+
+.item-container:hover {
+  transform: scale(0.9);
+  background-color: bisque;
+}
+
+.delete-btn {
+  margin-top: 10px;
+  width: 80px;
+  padding: 3px 9px;
+  cursor: pointer;
+  background-color: #af6f0f;
+  font-size: medium;
+  border-radius: 10px;
+  color: aliceblue;
+}
+
+.delete-btn:hover {
+  background-color: #7a4900;
+}
+
+.item-container img {
+  margin: 20px 0;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+}
+
+.Read-bnt {
+  margin-top: 10px;
+  width: 100px;
+  padding: 3px 9px;
+  cursor: pointer;
+  background-color: #af6f0f;
+  font-size: medium;
+  border-radius: 10px;
+  color: aliceblue;
+}
+
+.Read-bnt:hover {
+  background-color: #7a4900;
+}
+
+.nav {
+  margin-left: 20px;
+  font-size: x-large;
+}
+
+.All-btn {
+  margin-left: 850px;
+  margin-bottom: 112px;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  background-color: #af6f0f;
+  font-size: medium;
+  border-radius: 5px;
+  color: aliceblue;
+}
+
+.All-btn:hover {
+  background-color: #7a4900;
+}
+
+.nav {
+  margin-bottom: -80px;
+}
+
+.update-btn {
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 80px;
+  padding: 3px 9px;
+  cursor: pointer;
+  background-color: #af6f0f;
+  font-size: medium;
+  border-radius: 10px;
+  color: aliceblue;
+}
+
+.update-btn:hover {
+  background-color: #7a4900;
+}
+
+.nav h1 {
+  margin-left: 30px;
+  margin-top: 10px;
+}
+
+.categorie {
+  margin-left: 400px;
+  margin-top: -70px;
+}
+
+.input-categorie {
+  border-radius: 5px;
+  background-color: #af6f0f;
+  width: 230px;
+  height: 40px;
+  font-size: medium;
+  color: aliceblue;
+  cursor: pointer;
+  border-color: black;
+}
+
+.input-categorie:hover {
+  background-color: #7a4900;
+}
+
+.text-categorie {
+  font-size: large;
+  color: black;
+  margin-left: 33px;
+  
+}
